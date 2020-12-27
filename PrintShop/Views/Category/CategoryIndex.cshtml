@@ -1,0 +1,49 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_Layout";
+}
+
+<h2>Category list</h2>
+
+<a href="/category/new" class="btn btn-success">Add category</a>
+
+<br />
+
+@{
+    var categoryList = ViewData["categories"] as List<Category>;
+
+    foreach (var category in categoryList)
+    {
+        <div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
+            
+            @Html.Label("Id", "Id:")
+            <p>@category.Id</p>
+
+            <br />
+
+            @Html.Label("Name", "Name:")
+            <p>@category.Name</p>
+            
+             @Html.Label("Description", "Description:")
+                        <p>@category.Description</p>
+
+            <br />
+            
+            <a href="/category/edit/@category.Id" class="btn btn-warning">Editare</a>
+            <br />
+            <br/>
+            <a href="/category/delete/@category.Id" class="btn btn-danger">Sterge</a>
+
+        </div>
+
+
+
+
+    }
+}
+
+
+
+
