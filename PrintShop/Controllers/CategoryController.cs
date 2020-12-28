@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PrintShop.Areas.Identity.Data;
 using PrintShop.Models;
 
 namespace PrintShop.Controllers

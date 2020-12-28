@@ -28,14 +28,28 @@ namespace PrintShop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PrintShopContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //services.AddDbContext<PrintShopIdentityDbContext>(options =>
+               // options.UseSqlServer(
+                 //   Configuration.GetConnectionString("PrintShopIdentityDbContextConnection")));
+                 
+                 
+                 
+            services.AddDbContext<PrintShopContext>( options =>
+                 options.UseNpgsql(
+                  Configuration.GetConnectionString("PrintShopContextConnection")));
+            
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<PrintShopContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            
+            
+            services.AddDbContext<PrintShopContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("PrintShopContextConnection")));
+            
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

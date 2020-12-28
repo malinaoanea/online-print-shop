@@ -214,7 +214,6 @@
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Areas/Identity/Pages/_ViewImports.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Category/CategoryIndex.cshtml.g.cs
-/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Category/CreateEdit.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Category/New.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Category/Details.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Category/Edit.cshtml.g.cs
