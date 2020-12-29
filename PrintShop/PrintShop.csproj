@@ -7,6 +7,54 @@
 
     <ItemGroup>
         <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+        <None Include="wwwroot\assets\css\base\_body-element.sass" />
+        <None Include="wwwroot\assets\css\base\_fonts.scss" />
+        <None Include="wwwroot\assets\css\base\_normalize.scss" />
+        <None Include="wwwroot\assets\css\base\_selection-colors.sass" />
+        <None Include="wwwroot\assets\css\base\_vars.sass" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Black.eot" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Black.svg" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Black.ttf" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Black.woff" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Bold.eot" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Bold.svg" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Bold.ttf" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Bold.woff" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Light.eot" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Light.svg" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Light.ttf" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Light.woff" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Regular.eot" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Regular.svg" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Regular.ttf" />
+        <None Include="wwwroot\assets\css\fonts\Montserrat-Regular.woff" />
+        <None Include="wwwroot\assets\css\layouts\_grid.sass" />
+        <None Include="wwwroot\assets\css\main.css" />
+        <None Include="wwwroot\assets\css\main.sass" />
+        <None Include="wwwroot\assets\css\modules\_about.sass" />
+        <None Include="wwwroot\assets\css\modules\_contact.sass" />
+        <None Include="wwwroot\assets\css\modules\_device-notification.sass" />
+        <None Include="wwwroot\assets\css\modules\_header.sass" />
+        <None Include="wwwroot\assets\css\modules\_hire.sass" />
+        <None Include="wwwroot\assets\css\modules\_intro.sass" />
+        <None Include="wwwroot\assets\css\modules\_outer-nav.sass" />
+        <None Include="wwwroot\assets\css\modules\_section.sass" />
+        <None Include="wwwroot\assets\css\modules\_side-nav.sass" />
+        <None Include="wwwroot\assets\css\modules\_work.sass" />
+        <None Include="wwwroot\assets\img\about-history.jpg" />
+        <None Include="wwwroot\assets\img\about-philosophy.jpg" />
+        <None Include="wwwroot\assets\img\about-visual.png" />
+        <None Include="wwwroot\assets\img\about-winners.jpg" />
+        <None Include="wwwroot\assets\img\contact-visual.png" />
+        <None Include="wwwroot\assets\img\introduction-visual.png" />
+        <None Include="wwwroot\assets\img\logo.png" />
+        <None Include="wwwroot\assets\img\work-alex-nowak.jpg" />
+        <None Include="wwwroot\assets\img\work-metiew-smith.jpg" />
+        <None Include="wwwroot\assets\img\work-victory.jpg" />
+        <None Include="wwwroot\assets\js\functions-min.js" />
+        <None Include="wwwroot\assets\js\functions.js" />
+        <None Include="wwwroot\assets\js\vendor\hammer-2.0.8.js" />
+        <None Include="wwwroot\assets\js\vendor\jquery-2.2.4.min.js" />
     </ItemGroup>
 
     <ItemGroup>
