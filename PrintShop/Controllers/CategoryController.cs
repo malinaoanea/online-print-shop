@@ -16,6 +16,7 @@ namespace PrintShop.Controllers
         }
         
         // GET 
+        // [Authorize(Roles = "Admin")]
         [Route("/sefu/categories")]
         public IActionResult CategoryIndex()
         {
@@ -52,6 +53,7 @@ namespace PrintShop.Controllers
         }
         
         // GET: /category/edit/{id}
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -66,6 +68,7 @@ namespace PrintShop.Controllers
         }
 
         // POST: /category/edit
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Category category)
         {
@@ -100,6 +103,7 @@ namespace PrintShop.Controllers
         }
         
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var category = _context.Categories.Find(id);
