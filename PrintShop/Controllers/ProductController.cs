@@ -124,14 +124,14 @@ namespace PrintShop.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
-            var category = _context.Categories.Find(id);
+            var product = _context.Products.Find(id);
 
-            if (category == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
+            _context.Products.Remove(product);
 
             _context.SaveChanges();
 
