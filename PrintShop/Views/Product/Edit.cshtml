@@ -1,0 +1,52 @@
+@model PrintShop.Models.Product
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Edit product</h2>
+
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        @Html.HiddenFor(x => x.Id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name, new {@class = "control-label col-md-3"})
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.Name, new {@class = "form-control"})
+                @Html.ValidationMessageFor(x => x.Name, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Price, new {@class = "control-label col-md-3"})
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.Price, new {@class = "form-control"})
+                @Html.ValidationMessageFor(x => x.Price, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.ImageUrl, new {@class = "control-label col-md-3"})
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => x.ImageUrl, new {@class = "form-control"})
+                @Html.ValidationMessageFor(x => x.ImageUrl, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,52 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "_Layout";
+}
+
+<h2>Products list</h2>
+
+<a href="/product/new" class="btn btn-success">Add Product</a>
+
+<br />
+
+@{
+    var productsList = ViewData["products"] as List<Product>;
+
+    foreach (var product in productsList)
+    {
+        <div class="col-md-4 col-lg-4 col-xs-6 col-sm-4">
+            
+            @Html.Label("Id", "Id:")
+            <p>@product.Id</p>
+
+            <br />
+
+            @Html.Label("Name", "Name:")
+            <p>@product.Name</p>
+            
+             @Html.Label("Price", "Price:")
+                        <p>@product.Price</p>
+
+            <br />
+            
+            @Html.Label("ImageUrl", "ImageUrl:")
+                                    <p>@product.ImageUrl</p>
+            
+            <br />
+            
+           
+            
+            <a href="/product/edit/@product.Id" class="btn btn-warning">Editare</a>
+            <br />
+            <br/>
+            <a href="/product/delete/@product.Id" class="btn btn-danger">Sterge</a>
+
+        </div>
+
+
+
+
+    }
+}

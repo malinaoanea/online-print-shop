@@ -86,6 +86,7 @@ namespace PrintShop.Controllers
                     oldCategoryr.Name = category.Name;
                     oldCategoryr.Id = category.Id;
                     oldCategoryr.Description = category.Description;
+                    oldCategoryr.ImageUrl = category.ImageUrl;
 
                     TryUpdateModelAsync(oldCategoryr);
 

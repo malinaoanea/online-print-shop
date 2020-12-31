@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PrintShop.Models;
@@ -9,9 +10,10 @@ using PrintShop.Models;
 namespace PrintShop.Data.Migrations
 {
     [DbContext(typeof(PrintShopContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201230224135_productMigr7")]
+    partial class productMigr7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,6 +264,9 @@ namespace PrintShop.Data.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<int>("CategoryForeignKey")
+                        .HasColumnType("integer");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
@@ -278,7 +283,7 @@ namespace PrintShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryForeignKey");
 
                     b.ToTable("Products");
                 });
@@ -338,7 +343,7 @@ namespace PrintShop.Data.Migrations
                 {
                     b.HasOne("PrintShop.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CategoryForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
