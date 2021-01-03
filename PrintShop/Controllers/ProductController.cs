@@ -120,6 +120,13 @@ namespace PrintShop.Controllers
             return View(product);
         }
 
+        // Get: //product/displayandshopproduct
+        public ActionResult DisplayAndShopProduct()
+        {
+            ViewData["products"] = _context.Products.ToList();
+            return View();
+        }
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)

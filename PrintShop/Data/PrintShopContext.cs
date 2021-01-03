@@ -12,6 +12,7 @@ namespace PrintShop.Models
         public DbSet<Models.Category> Categories { get; set; }
         
         public DbSet<Models.Product> Products { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
