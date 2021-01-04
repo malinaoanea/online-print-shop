@@ -172,10 +172,12 @@
 			var $this = $(this),
 				span = $this.find('> span'),
 				em = $this.find('> em');
-
+			
 			span.text(em.text());
+			
 
 		})
+		
 	}
 
 

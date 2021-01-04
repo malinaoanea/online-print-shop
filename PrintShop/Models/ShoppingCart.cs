@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,15 +6,16 @@ namespace PrintShop.Models
     public class ShoppingCart
     {
         [Key]
-        public int Id { get; set; }
-        [Required]
-        public int CategoryId { get; set; }
-
+        public string Id { get; set; }
         
-        [ForeignKey("ClientUsername")]
-        public  { get; set; }
+        [Required]
+        public string ClientId { get; set; }
 
-        public IEnumerable<Product> ShoppingCartItems { get; set; }
+        public ShoppingCart( string clientId, string id)
+        {
+            ClientId = clientId;
+            Id = id;
+        }
         
         
     }

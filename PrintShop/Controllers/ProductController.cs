@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PrintShop.Logic;
 using PrintShop.Models;
 
 namespace PrintShop.Controllers
@@ -120,9 +122,17 @@ namespace PrintShop.Controllers
             return View(product);
         }
 
+        public void AddToCart(string id)
+        {
+            ShoppingCartLogic shoppingCartLogic = new ShoppingCartLogic(_context, User.FindFirstValue(ClaimTypes.NameIdentifier));
+            
+            shoppingCartLogic.AddToCart(id);
+        }
+
         // Get: //product/displayandshopproduct
         public ActionResult DisplayAndShopProduct()
         {
+            ViewData["categories"] = _context.Categories.ToList();
             ViewData["products"] = _context.Products.ToList();
             return View();
         }

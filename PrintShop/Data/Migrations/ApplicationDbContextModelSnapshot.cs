@@ -213,6 +213,33 @@ namespace PrintShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("PrintShop.Models.CartItem", b =>
+                {
+                    b.Property<string>("CartItemId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CartId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClientId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CartItemId");
+
+                    b.HasIndex("ProductId1");
+
+                    b.ToTable("CartItems");
+                });
+
             modelBuilder.Entity("PrintShop.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -283,6 +310,20 @@ namespace PrintShop.Data.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("PrintShop.Models.ShoppingCart", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -332,6 +373,15 @@ namespace PrintShop.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PrintShop.Models.CartItem", b =>
+                {
+                    b.HasOne("PrintShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId1");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("PrintShop.Models.Product", b =>

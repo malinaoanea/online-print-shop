@@ -1,4 +1,9 @@
 
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using PrintShop.Controllers
+
 
 @{
     ViewBag.Title = "title";
@@ -7,156 +12,153 @@
 
 <head>
       
-        	<!-- Facebook and Twitter integration -->
-      	<meta property="og:title" content=""/>
-      	<meta property="og:image" content=""/>
-      	<meta property="og:url" content=""/>
-      	<meta property="og:site_name" content=""/>
-      	<meta property="og:description" content=""/>
-      	<meta name="twitter:title" content="" />
-      	<meta name="twitter:image" content="" />
-      	<meta name="twitter:url" content="" />
-      	<meta name="twitter:card" content="" />
+        <meta charset="utf-8">
+          <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        
+          <title>Gp Bootstrap Template - Index</title>
+          <meta content="" name="description">
+          <meta content="" name="keywords">
+        
+          <!-- Favicons -->
+          <link href="../assets1/img/favicon.png" rel="icon">
+          <link href="../assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
+        
+          <!-- Google Fonts -->
+          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        
+        <!-- Vendor CSS Files -->
+        
+          <link href="../assets1/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+          <link href="../assets1/vendor/icofont/icofont.min.css" rel="stylesheet">
+          <link href="../assets1/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+          <link href="../assets1/vendor/owl.carousel/assets1/owl.carousel.min.css" rel="stylesheet">
+          <link href="../assets1/vendor/venobox/venobox.css" rel="stylesheet">
+          <link href="../assets1/vendor/remixicon/remixicon.css" rel="stylesheet">
+          <link href="../assets1/vendor/aos/aos.css" rel="stylesheet">
+        
+          <!-- Template Main CSS File -->
+          <link href="../assets1/css/style.css" rel="stylesheet">
+        
+        <!-- =======================================================
+        * Template Name: Gp - v3.0.0
+        * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+  </head>
+
+	  
+	        
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="" style="color: #0b0b0b" >Backdoor shop<span>.</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src=""../assets1/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/" style="color: #0b0b0b; border: #0b0b0b">Home</a></li>
+          
+
+        </ul>
+      </nav><!-- .nav-menu -->
+       @if (SignInManager.IsSignedIn(User))
+          {
+              
+                  <a style="color: #0b0b0b" asp-area="Identity" asp-page="/Account/Manage/Index" >Hello @User.Identity.Name!</a>
+              
+                 
+              
+          }
+          else
+          {
+              <a href="/Identity/Account/Login" class="get-started-btn scrollto">Log in</a>
+          }
       
-      	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-      	<link rel="shortcut icon" href="favicon.ico">
-      	<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-      	<!-- <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet"> -->
-      	
-      	<!-- Animate.css -->
-      	<link rel="stylesheet" href="../css1/animate.css">
-      	<!-- Icomoon Icon Fonts-->
-      	<link rel="stylesheet" href="../css1/icomoon.css">
-      	<!-- Bootstrap  -->
-      	<link rel="stylesheet" href="../css1/bootstrap.css">
-      	<!-- Theme style  -->
-      	<link rel="stylesheet" href="../css1/style.css">
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <main id="main">
+    
+  <section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Shop</h2>
+        <p>Check our Stuff</p>
+      </div>
+        
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            @{
+              var products = ViewData["products"] as List<Product>;
+              var categories = ViewData["categories"]  as List<Category>;
+              foreach (var category in categories)
+              {
+                <li data-filter=".filter-app">@category.Name</li>
+              }
+            }
+
+          </ul>
+        </div>
+      </div>
       
-      	<!-- Magnific Popup -->
-      	<link rel="stylesheet" href="../css1/magnific-popup.css">
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        @{
+          foreach (var product in products)
+          {
+            <div class="col-lg-4 col-md-6 portfolio-item filter-@categories.Find(c => c.Id == product.CategoryId).Name">
+              <div class="portfolio-wrap">
+                <img src=@product.ImageUrl class="img-fluid" style="height: auto; width: 100%"  alt="Sth went wrong">
+                <div class="portfolio-info">
+                  <h4>@product.Name</h4>
+                  <p>@product.Price lei</p>
+                  <div class="portfolio-links">
+                    <a href=@product.ImageUrl data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                    @Html.ActionLink("Add To Cart", "AddToCart", null, new {id = @product.Id})
+
+                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
       
-      	<!-- Modernizr JS -->
-      	<script src="../../js1/modernizr-2.6.2.min.js"></script>
-      	<!-- FOR IE9 below -->
-      	<!--[if lt IE 9]>
-      	<script src="../../js1/respond.min.js"></script>
-      	<![endif]-->
       
-</head>
+          }
+          
 
+        }
+      </div>
+    </div>
+    
+  </section>
+  </main>
 
+ 
+ 
+  <!-- Vendor JS Files -->
+  <script src="../assets1/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets1/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../assets1/vendor/php-email-form/validate.js"></script>
+  <script src="../assets1/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../assets1/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets1/vendor/venobox/venobox.min.js"></script>
+  <script src="../assets1/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../assets1/vendor/counterup/counterup.min.js"></script>
+  <script src="../assets1/vendor/aos/aos.js"></script>
 
-<html>
-	
-	<body>
-	
+  <!-- Template Main JS File -->
+  <script src="../assets1/js/main.js"></script>
 
-	<div id="fh5co-page">
-	
-	<div class="aside-toggle btn-circle">
-		<a href="#"><span></span><em>About</em></a>
-	</div>
-	<div class="back-to-home btn-circle">
-		<a href="../home"><span></span><em>Back</em></a>
-	</div>
+</body>
 
-	<div id="fh5co-aside">
-		<div class="image-bg"></div>
-		<div class="overlay"></div> 
-		<div class="row">
-			<div class="col-md-12">
-				<div id="fh5co-aside-inner">
-					<div class="row" id="fh5co-bio">
-						<div class="col-md-12">
-							<h2>About Me</h2>
-						</div>
-						<div class="col-md-6">
-							<p>Sint, <a href="#">consectetur</a>, fugit. Sed, blanditiis. Autem quae perferendis totam provident, consequuntur inventore reiciendis vitae suscipit rerum repellendus facere voluptatem tenetur iure praesentium corrupti asperiores eos laborum debitis eaque maiores magnam nisi exercitationem sunt maxime! At eligendi deserunt, iusto natus molestias!</p>
-						</div>
-						<div class="col-md-6">
-							<p>Quas praesentium dolore unde delectus, nemo accusantium, qui ab illum debitis assumenda tempore molestias ipsam, eveniet repellendus officiis in vel, explicabo quos necessitatibus atque doloremque. Quae maiores delectus, magnam nam.</p>
-						</div>
-						<div class="col-md-12 fh5co-social">
-							<a href="#"><i class="icon-envelope"></i></a>
-							<a href="#"><i class="icon-twitter"></i></a>
-							<a href="#"><i class="icon-linkedin"></i></a>
-							<a href="#"><i class="icon-instagram"></i></a>
-							<a href="#"><i class="icon-google-plus"></i></a>
-						</div>
-						<div class="col-md-12" style="margin-top: 40px;">
-							<p>&copy; 2016 Free HTML5 Template. All Rights Reserved. Designed by <a href="http://gettemplates.co/">GetTemplates</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container-fluid" id="fh5co-image-grid">
-		
-
-		<div class="grid">
-		  <div class="grid-sizer"></div>
-
-		 @{
-			 var productsList = ViewData["products"] as List<Product>;
-			 foreach (var product in productsList)
-			 {
-				 <div class="grid-item item animate-box" data-animate-effect="fadeIn">
-					 <a href=@product.ImageUrl class="image-popup" title=@product.Name>
-						 <div class="img-wrap">
-							 <img src=@product.ImageUrl alt="" class="img-responsive">
-						 </div>
-						 <div class="text-wrap">
-							 <div class="text-inner popup">
-								 <div>
-									 <h2>@product.Name</h2>
-									 <h3>@product.Price</h3>
-									 <button> Add to cart</button>
-								 </div>
-							 </div>
-						 </div>
-					 </a>
-				 </div>
-			 }
-		 }
-
-		  
-		  
-		  
-
-		</div>
-
-		
-	</div>
-
-	</div>
-	
-	<!-- jQuery -->
-	<script src="../../js1/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="../../js1/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="../js1/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="../js1/jquery.waypoints.min.js"></script>
-
-	<!-- Magnific -->
-	<script src="../js1/jquery.magnific-popup.min.js"></script>
-	<script src="../js1/magnific-popup-options.js"></script>
-	<!-- Isotope & imagesLoaded -->
-	<script src="../js1/isotope.pkgd.min.js"></script>
-	<script src="../js1/imagesloaded.pkgd.min.js"></script>
-	<!-- GSAP  -->
-	<script src="../js1/TweenLite.min.js"></script>
-	<script src="../js1/CSSPlugin.min.js"></script>
-	<script src="../js1/EasePack.min.js"></script>
-
-	<!-- MAIN JS -->
-	<script src="../js1/main.js"></script>
-
-	</body>
-</html>
-
-
-
-}
