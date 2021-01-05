@@ -1,4 +1,6 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace PrintShop.Models
 {
@@ -18,13 +20,18 @@ namespace PrintShop.Models
         
         public static int No { get; set; }
 
-        public CartItem(string cartId, string clientId, string productId)
+        public CartItem(string cartId, string clientId, string productId, PrintShopContext context)
         {
-            CartId = cartId;
-            ClientId = clientId;
-            ProductId = productId;
-            CartItemId = ( No + 1).ToString() ;
-            No += 1;
+            
+            
+                CartId = cartId;
+                ClientId = clientId;
+                ProductId = productId;
+                CartItemId = ( No + 1).ToString() ;
+                No += 1;
+            
+
+            
         }
     }
 }

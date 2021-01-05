@@ -34,6 +34,8 @@
           <link href="../assets1/vendor/remixicon/remixicon.css" rel="stylesheet">
         <link href="../assets1/vendor/aos/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         
           <!-- Template Main CSS File -->
         <link href="../assets1/css/style.css" rel="stylesheet">
@@ -89,47 +91,59 @@
 
 <main id="main">
 
- <section id="team" class="team">
-       <div class="container" data-aos="fade-up">
+  <section id="team" class="team">
+    <div class="container" data-aos="fade-up">
  
-         <div class="section-title">
-           <h2>Products</h2>
-           <p>My cart</p>
-         </div>
+      <div class="section-title">
+        <h2>Products</h2>
+        <p>My shopping bag</p>
+      </div>
  
-         <div class="row">
-           @{
-             var products = ViewData["items"] as List<Product>;
-             foreach (var product in products)
-             {
-               <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                            <div class="member" data-aos="fade-up" data-aos-delay="100">
-                              <div class="member-img">
-                                <img src="@product.ImageUrl" class="img-fluid" alt="" style="height: auto; width: 100%">
-                                <div class="social">
-                                  <a href=""><i class="icofont-twitter"></i></a>
-                                  <a href=""><i class="icofont-facebook"></i></a>
-                                  <a href=""><i class="icofont-instagram"></i></a>
-                                  <a href=""><i class="icofont-linkedin"></i></a>
-                                   @Html.ActionLink("Delete cart item", "DeleteCartItem", null, new {id = @product.Id})
-                                </div>
-                              </div>
-                              <div class="member-info">
-                                <h4>@product.Name</h4>
-                                <span>@product.Price lei</span>
-                              </div>
-                            </div>
-                          </div>
-             }
-           }
+      <div class="row">
+        @{
+          var products = ViewData["items"] as List<Product>;
+          var sum = products.Sum(x => x.Price);
+          foreach (var product in products)
+          {
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+              <div class="member" data-aos="fade-up" data-aos-delay="100">
+                <div class="member-img">
+                  <img src="@product.ImageUrl" class="img-fluid" alt="" style="height: auto; width: 100%">
+                                
+                </div>
+                <div class="member-info">
+                  <h4>@product.Name</h4>
+                  <span>@product.Price lei</span>
+                  <br>
+                  <a href="@Url.Action("DeleteCartItem", new {id = @product.Id} )" class="glyphicon glyphicon-trash" style="color: #0b0b0b">
+                    <i class="icon-pencil icon-white"></i>
+                                                                                
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
+        }
 
            
 
           
              
-       </div>
-       </div>
-     </section>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <section id="cta" class="cta">
+        <div class="container" data-aos="zoom-in">
+  
+          <div class="text-center">
+            <h3>Total: @sum lei</h3>
+            <a class="cta-btn" href="#">Continue</a>
+          </div>
+  
+        </div>
+      </section><!-- End Cta Section -->
       
       	
 </main>

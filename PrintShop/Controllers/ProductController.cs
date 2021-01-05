@@ -24,6 +24,7 @@ namespace PrintShop.Controllers
         public ProductController(PrintShopContext printShopContext)
         {
             _context = printShopContext;
+            
         }
 
         // [Authorize(Roles = "Admin"
@@ -124,6 +125,12 @@ namespace PrintShop.Controllers
 
         public void AddToCart(string id)
         {
+            // creates a first "virtual" product for a new user that keeps away from PK constraint
+            if (CartItem.No == 0)
+            {
+                var x = Int32.Parse(_context.CartItems.Max(x=>x.CartItemId));
+                CartItem.No = x + 1;
+            }
             ShoppingCartLogic shoppingCartLogic = new ShoppingCartLogic(_context, User.FindFirstValue(ClaimTypes.NameIdentifier));
             
             shoppingCartLogic.AddToCart(id);

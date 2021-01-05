@@ -39,13 +39,13 @@ namespace PrintShop.Logic
               
               //add the new cart item to the cart
               string cartItemId = _printShopContext.CartItems.Count().ToString();
-              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id));
+              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id, _printShopContext));
               _printShopContext.SaveChanges();
             }
             else
             {
               string cartItemId = _printShopContext.CartItems.Count().ToString();
-              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id));
+              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id, _printShopContext));
               _printShopContext.SaveChanges();
             }
 

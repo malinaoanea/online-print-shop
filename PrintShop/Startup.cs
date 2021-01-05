@@ -51,8 +51,6 @@ namespace PrintShop
             services.AddDbContext<PrintShopContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("PrintShopContextConnection")));
-            
-            
 
             
         }
