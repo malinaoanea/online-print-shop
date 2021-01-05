@@ -222,3 +222,4 @@
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Product/ProductIndex.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Product/DisplayAndShopProduct.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/ShopProducts/Index.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/ShoppingCart/ProductIndex.cshtml.g.cs

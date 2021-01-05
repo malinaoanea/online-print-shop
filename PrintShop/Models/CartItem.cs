@@ -4,7 +4,6 @@ namespace PrintShop.Models
 {
     public class CartItem
     {
-        [Key]
         public string CartItemId { get; set; }
 
         public string CartId { get; set; }
@@ -16,13 +15,16 @@ namespace PrintShop.Models
         public string ProductId { get; set; }
 
         public virtual Product Product { get; set; }
+        
+        public static int No { get; set; }
 
-        public CartItem(string cartId, string clientId, string productId, string cartItemId)
+        public CartItem(string cartId, string clientId, string productId)
         {
             CartId = cartId;
             ClientId = clientId;
             ProductId = productId;
-            CartItemId = cartItemId;
+            CartItemId = ( No + 1).ToString() ;
+            No += 1;
         }
     }
 }

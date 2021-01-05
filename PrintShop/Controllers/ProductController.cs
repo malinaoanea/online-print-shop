@@ -129,6 +129,10 @@ namespace PrintShop.Controllers
             shoppingCartLogic.AddToCart(id);
         }
 
+        
+
+       
+
         // Get: //product/displayandshopproduct
         public ActionResult DisplayAndShopProduct()
         {

@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PrintShop.Logic;
 using PrintShop.Models;
 
 namespace PrintShop.Controllers
@@ -9,9 +12,25 @@ namespace PrintShop.Controllers
     {
         private PrintShopContext _context;
 
-        // GET
+        [Route("/mycart")]
         public IActionResult ProductIndex()
         {
+            string clientIt = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            // daca nu are produce in carucior da eroare
+            var shoppingCartId = _context.ShoppingCarts.Where(c=> c.ClientId == clientIt).ToList()[0].Id;
+
+            var items = _context.CartItems.Where(c => c.CartId == shoppingCartId).ToList();
+
+            var products = new List<Product>();
+            foreach (var item in items)
+            {
+                Product product =
+                    _context.Products.Where(product1 => product1.Id.ToString() == item.ProductId).ToList()[0];
+                products.Add( product);
+            }
+
+            ViewData["items"] = products;
             return View();
         }
 
@@ -20,46 +39,13 @@ namespace PrintShop.Controllers
             _context = printShopContext;
         }
 
-        // [Authorize(Roles = "Admin"
-        [HttpGet]
-        public IActionResult New(int categoryId = 0)
+        public ActionResult DeleteCartItem(string id)
         {
-            var shoppingCart = _context.ShoppingCarts
-                .Select(x => new
-                {
-                    ShoppingcartId = x.Id,
-                    ClientId = x.ClientId
-                }).ToList();
-
-            return View();
-        }
-
-
-        [HttpPost]
-        // Get /product/new
-        public ActionResult New(ShoppingCart shoppingCart)
-        {
+            ShoppingCartLogic shoppingCartLogic = new ShoppingCartLogic(_context, User.FindFirstValue(ClaimTypes.NameIdentifier));
             
+            shoppingCartLogic.DeleteCartItem(id);
             
-            if (ModelState.IsValid)
-            {
-                _context.ShoppingCarts.Add(shoppingCart);
-
-                _context.SaveChanges();
-
-                // return RedirectToAction("ProductIndex", "Product");
-
-            }
-            
-            var shoppingCarts = _context.ShoppingCarts
-                .Select(x => new
-                {
-                    ShoppingCartId = x.Id,
-                    ClientId = x.ClientId
-                }).ToList();
-
-            
-            return View(shoppingCart);
+            return RedirectToAction("ProductIndex", "ShoppingCart");
         }
     }
 }

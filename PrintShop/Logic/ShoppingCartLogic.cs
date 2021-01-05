@@ -15,7 +15,6 @@ namespace PrintShop.Logic
         private PrintShopContext _printShopContext;
         private string _clientId;
 
-        public const string CartSessionKey = "CartId";
 
         
         public ShoppingCartLogic(PrintShopContext _printShopContext, string clientId)
@@ -40,13 +39,13 @@ namespace PrintShop.Logic
               
               //add the new cart item to the cart
               string cartItemId = _printShopContext.CartItems.Count().ToString();
-              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id, cartItemId));
+              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id));
               _printShopContext.SaveChanges();
             }
             else
             {
               string cartItemId = _printShopContext.CartItems.Count().ToString();
-              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id, cartItemId));
+              _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id));
               _printShopContext.SaveChanges();
             }
 
@@ -77,6 +76,16 @@ namespace PrintShop.Logic
 
           return _printShopContext.CartItems.Where(
               c => c.CartId == ShoppingCartId).ToList();
+        }
+
+        public void DeleteCartItem(string productId)
+        {
+          var cartId = GetCartId();
+          var toBeRemoved = _printShopContext.CartItems.Where(c => c.ProductId == productId && c.CartId == cartId)
+            .ToList()[0];
+
+          _printShopContext.CartItems.Remove(toBeRemoved);
+          _printShopContext.SaveChanges();
         }
       }
         

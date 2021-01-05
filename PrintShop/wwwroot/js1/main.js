@@ -1,194 +1,82 @@
-;(function () {
-	
-	'use strict';
+jQuery(document).ready(function($){
+	//if you change this breakpoint in the style.css file (or _layout.scss if you use SASS), don't forget to update this value as well
+	var $L = 1200,
+		$menu_navigation = $('#main-nav'),
+		$cart_trigger = $('#cd-cart-trigger'),
+		$hamburger_icon = $('#cd-hamburger-menu'),
+		$lateral_cart = $('#cd-cart'),
+		$shadow_layer = $('#cd-shadow-layer');
 
-
-
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-			BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-			iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-			Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-			Windows: function() {
-			return navigator.userAgent.match(/IEMobile/i);
-		},
-			any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	};
-
-
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
-
-			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
-				i++;
-
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
-
-					$('body .animate-box.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn animated-fast');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft animated-fast');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight animated-fast');
-							} else {
-								el.addClass('fadeInUp animated-fast');
-							}
-
-							el.removeClass('item-animate');
-						},  k * 50, 'easeInOutExpo' );
-					});
-					
-				}, 50);
-				
-			}
-
-		} , { offset: '90%' } );
-	};
-
-
-	var isotopeImageLoaded = function() {
-		
-		var $grid = $('.grid').isotope({
-		  itemSelector: '.grid-item',
-		  percentPosition: true,
-		  resizable: false,
-		  masonry: {
-		    columnWidth: '.grid-sizer',
-		  }
-		});
-
-		$grid.imagesLoaded().progress( function() {
-		  $grid.isotope('layout');
-		});
-
-	}
-
-	var toggleAside = function() {
-
-		$('.aside-toggle').click(function(event){
-			
-			event.preventDefault();
-			var aside = $('#fh5co-aside'),
-				 grid = $('#fh5co-image-grid, .aside-toggle'),
-				 bio = $('#fh5co-bio'),
-				 imgBg = $('.image-bg');
-
-
-			if (aside.hasClass('show')) {
-				
-				
-				if ($(window).width() <= 480 ) {
-					TweenLite.to(aside, -1, { 
-						left: '-85%',
-						ease: Power1.easeNone 
-					});
-				} else {
-					TweenLite.to(aside, -1, { 
-						left: '-50%',
-						ease: Power1.easeNone 
-					});
-				}
-				
-				TweenLite.to(grid, -1, { css: { 
-						"-webkit-transform" : "translate3d(0%, 0px, 0px)", 
-						"-moz-transform" : "translate3d(0%, 0px, 0px)", 
-						"-ms-transform" : "translate3d(0%, 0px, 0px)", 
-						"-o-transform" : "translate3d(0%, 0px, 0px)", 
-						"transform" : "translate3d(0%, 0px, 0px)"
-					}, 
-					ease: Power1.easeNone
-				});
-
-				TweenLite.to(bio, 1, { opacity: 0, delay: 0.2, ease: Power1.easeNone});
-				TweenLite.to(imgBg, 1, { opacity: 0, delay: 0.2, ease: Power1.easeNone});
-				
-
-				aside.removeClass('show');	
-			} else {
-
-				TweenLite.to(aside, -1, { 
-					left: '0%',
-					ease: Power1.easeNone 
-				});
-
-				if ($(window).width() <= 480 ) {
-					TweenLite.to(grid, -1, { css: { 
-							"-webkit-transform" : "translate3d(85%, 0px, 0px)", 
-							"-moz-transform" : "translate3d(85%, 0px, 0px)", 
-							"-ms-transform" : "translate3d(85%, 0px, 0px)", 
-							"-o-transform" : "translate3d(85%, 0px, 0px)", 
-							"transform" : "translate3d(85%, 0px, 0px)" 
-						}, 
-						ease: Power1.easeNone
-					})
-				} else {
-					TweenLite.to(grid, -1, { css: { 
-							"-webkit-transform" : "translate3d(50%, 0px, 0px)", 
-							"-moz-transform" : "translate3d(50%, 0px, 0px)", 
-							"-ms-transform" : "translate3d(50%, 0px, 0px)", 
-							"-o-transform" : "translate3d(50%, 0px, 0px)", 
-							"transform" : "translate3d(50%, 0px, 0px)" 
-						}, 
-						ease: Power1.easeNone
-					});
-				}
-
-				TweenLite.to(bio, 1, { opacity: 1, delay: 0.3, ease: Power1.easeNone});
-				TweenLite.to(imgBg, 1, { opacity: 1, delay: 0.6, ease: Power1.easeNone});
-				aside.addClass('show');	
-			}
-		});
-
-		$(document).click(function (e) {
-	    var container = $(".aside-toggle, #fh5co-aside");
-	    if (!container.is(e.target) && container.has(e.target).length === 0) {
-	      if ( $('#fh5co-aside').hasClass('show') ) {
-	      	container.trigger('click');
-	      }
-	    }
-		});
-
-	}
-
-	var buttonsCustom = function() {
-		$('.btn-circle a').each(function(){
-			var $this = $(this),
-				span = $this.find('> span'),
-				em = $this.find('> em');
-			
-			span.text(em.text());
-			
-
-		})
-		
-	}
-
-
-
-	
-	$(function(){
-		contentWayPoint();
-		isotopeImageLoaded();
-		toggleAside();
-		buttonsCustom();
+	//open lateral menu on mobile
+	$hamburger_icon.on('click', function(event){
+		event.preventDefault();
+		//close cart panel (if it's open)
+		$lateral_cart.removeClass('speed-in');
+		toggle_panel_visibility($menu_navigation, $shadow_layer, $('body'));
 	});
 
+	//open cart
+	$cart_trigger.on('click', function(event){
+		event.preventDefault();
+		//close lateral menu (if it's open)
+		$menu_navigation.removeClass('speed-in');
+		toggle_panel_visibility($lateral_cart, $shadow_layer, $('body'));
+	});
 
-}());
+	//close lateral cart or lateral menu
+	$shadow_layer.on('click', function(){
+		$shadow_layer.removeClass('is-visible');
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		if( $lateral_cart.hasClass('speed-in') ) {
+			$lateral_cart.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').removeClass('overflow-hidden');
+			});
+			$menu_navigation.removeClass('speed-in');
+		} else {
+			$menu_navigation.removeClass('speed-in').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+				$('body').removeClass('overflow-hidden');
+			});
+			$lateral_cart.removeClass('speed-in');
+		}
+	});
+
+	//move #main-navigation inside header on laptop
+	//insert #main-navigation after header on mobile
+	move_navigation( $menu_navigation, $L);
+	$(window).on('resize', function(){
+		move_navigation( $menu_navigation, $L);
+		
+		if( $(window).width() >= $L && $menu_navigation.hasClass('speed-in')) {
+			$menu_navigation.removeClass('speed-in');
+			$shadow_layer.removeClass('is-visible');
+			$('body').removeClass('overflow-hidden');
+		}
+
+	});
+});
+
+function toggle_panel_visibility ($lateral_panel, $background_layer, $body) {
+	if( $lateral_panel.hasClass('speed-in') ) {
+		// firefox transitions break when parent overflow is changed, so we need to wait for the end of the trasition to give the body an overflow hidden
+		$lateral_panel.removeClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			$body.removeClass('overflow-hidden');
+		});
+		$background_layer.removeClass('is-visible');
+
+	} else {
+		$lateral_panel.addClass('speed-in').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
+			$body.addClass('overflow-hidden');
+		});
+		$background_layer.addClass('is-visible');
+	}
+}
+
+function move_navigation( $navigation, $MQ) {
+	if ( $(window).width() >= $MQ ) {
+		$navigation.detach();
+		$navigation.appendTo('header');
+	} else {
+		$navigation.detach();
+		$navigation.insertAfter('header');
+	}
+}
