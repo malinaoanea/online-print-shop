@@ -16,6 +16,10 @@ namespace PrintShop.Models
         public DbSet<Models.CartItem> CartItems { get; set; }
         
         public DbSet<Models.ShoppingCart> ShoppingCarts { get; set; }
+        
+        public DbSet<Models.DeliveryAddress> DeliveryAddresses { get; set; }
+        
+        public DbSet<Models.Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -24,6 +28,10 @@ namespace PrintShop.Models
                 .HasOne<Category>(s => s.Category)
                 .WithMany(g => g.Products)
                 .HasForeignKey(s => s.CategoryId);
+            
+            modelBuilder.Entity<Order>()
+                .HasKey(c => new { c.OrderId });
+            
         }
 
         // public DbSet<IdentityUser> IdentityUsers { get; set; }

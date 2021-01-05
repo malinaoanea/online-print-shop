@@ -1,0 +1,58 @@
+@model DeliveryAddress
+@{
+  Layout = null;
+}
+
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   
+          
+          
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+          
+  <!-- Vendor CSS Files -->
+  <link href="../address/style.css" rel="stylesheet">
+          
+</head>
+
+@using (Html.BeginForm())
+{
+  <div class="container">
+    <h1>Shipping</h1>
+    <p>Please enter your shipping details.</p>
+    <hr />
+    <div class="form">
+    
+      <div class="fields fields--2">
+        <label class="field">
+          <span class="field__label" for="firstname">Country</span>
+          @Html.TextBoxFor(x => x.Country, new { @class = "field__input" })
+        </label>
+        
+        <label class="field">
+          <span class="field__label" for="firstname">County</span>
+          @Html.TextBoxFor(x => x.County, new {@class = "field__input"})
+        </label>
+        
+        <label class="field">
+                  <span class="field__label" for="firstname">City</span>
+                  @Html.TextBoxFor(x => x.City, new {@class = "field__input"})
+                </label>
+        <label class="field">
+          <span class="field__label" for="lastname">Full Address</span>
+          @Html.TextBoxFor(x => x.Address, new {@class = "field__input"})
+        </label>
+        <label class="field">
+          <span class="field__label" for="lastname">Phone number</span>
+          @Html.TextBoxFor(x => x.PhoneNumber, new {@class = "field__input"})
+          </label>
+      </div>
+     
+    </div>
+    <hr>
+    <button class="button">Continue</button>
+  </div>
+}

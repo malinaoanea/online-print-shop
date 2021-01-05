@@ -1,7 +1,9 @@
+
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 @using PrintShop.Controllers
+
 
 @{
     ViewBag.Title = "title";
@@ -34,8 +36,6 @@
           <link href="../assets1/vendor/remixicon/remixicon.css" rel="stylesheet">
         <link href="../assets1/vendor/aos/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         
           <!-- Template Main CSS File -->
         <link href="../assets1/css/style.css" rel="stylesheet">
@@ -66,7 +66,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="/" style="color: #0b0b0b; border: #0b0b0b">Home</a></li>
-          <li class="fa fa-shopping-cart" style="font-size:24px; color: #0b0b0b"></li>
+          <li class="fa fa-shopping-cart" style="font-size:24px" onclick="location.href='/mycart'" ></li>
 
         </ul>
       </nav><!-- .nav-menu -->
@@ -91,59 +91,64 @@
 
 <main id="main">
 
-  <section id="team" class="team">
+  <section id="portfolio" class="portfolio">
     <div class="container" data-aos="fade-up">
- 
+
       <div class="section-title">
-        <h2>Products</h2>
-        <p>My shopping bag</p>
+        <h2>Shop</h2>
+        <p>Review Data</p>
       </div>
- 
-      <div class="row">
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            @{
+              var products = ViewData["products"] as List<Product>;
+              var categories = ViewData["categories"] as List<Category>;
+              foreach (var category in categories)
+              {
+                <li data-filter=".filter-app">@category.Name</li>
+              }
+            }
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
         @{
-          var products = ViewData["items"] as List<Product>;
-          var sum = products.Sum(x => x.Price);
           foreach (var product in products)
           {
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-              <div class="member" data-aos="fade-up" data-aos-delay="100">
-                <div class="member-img">
-                  <img src="@product.ImageUrl" class="img-fluid" alt="" style="height: auto; width: 100%">
-                                
-                </div>
-                <div class="member-info">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-@categories.Find(c => c.Id == product.CategoryId).Name">
+              <div class="portfolio-wrap">
+                <img src=@product.ImageUrl class="img-fluid" style="height: auto; width: 100%" alt="Sth went wrong">
+                <div class="portfolio-info">
                   <h4>@product.Name</h4>
-                  <span>@product.Price lei</span>
-                  <br>
-                  <a href="@Url.Action("DeleteCartItem", new {id = @product.Id} )" class="glyphicon glyphicon-trash" style="color: #0b0b0b">
-                    <i class="icon-pencil icon-white"></i>
-                                                                                
-                  </a>
+                  <p>@product.Price lei</p>
+                  <div class="portfolio-links">
+                    <a href=@product.ImageUrl data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
+                    @Html.ActionLink("Add To Cart", "AddToCart", null, new {id = @product.Id})
+
+                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
+
+
           }
+
+
         }
-
-           
-
-          
-             
       </div>
     </div>
+
   </section>
-  <br>
-  <br>
-  <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-in">
   
-          <div class="text-center">
-            <h3>Total: @sum lei</h3>
-            <a class="cta-btn" href="/myaddresses">Continue</a>
-          </div>
-  
-        </div>
-      </section><!-- End Cta Section -->
+  <div id="cd-shadow-layer">
+          
+      </div>
       
       	
 </main>
@@ -191,7 +196,4 @@
 
 </body>
 </html>
-
-
-
 
