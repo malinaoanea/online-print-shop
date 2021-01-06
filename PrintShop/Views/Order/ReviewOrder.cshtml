@@ -102,6 +102,7 @@
       <div class="row">
         @{
           var products = ViewData["items"] as List<Product>;
+          var addres = ViewData["address"] as List<DeliveryAddress>;
           var sum = products.Sum(x => x.Price);
           foreach (var product in products)
           {
@@ -114,11 +115,7 @@
                 <div class="member-info">
                   <h4>@product.Name</h4>
                   <span>@product.Price lei</span>
-                  <br>
-                  <a href="@Url.Action("DeleteCartItem", new {id = @product.Id} )" class="glyphicon glyphicon-trash" style="color: #0b0b0b">
-                    <i class="icon-pencil icon-white"></i>
-                                                                                
-                  </a>
+                  
                 </div>
               </div>
             </div>
@@ -135,15 +132,23 @@
   <br>
   <br>
   <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-in">
-  
-          <div class="text-center">
-            <h3>Total: @sum lei</h3>
-            <a class="cta-btn" href="/placeorder">Continue</a>
-          </div>
-  
-        </div>
-      </section><!-- End Cta Section -->
+    <div class="container" data-aos="zoom-in">
+      
+              <div class="text-center">
+                <h3>Address: @addres[0].Country, @addres[0].County @addres[0].City</h3>
+                <h3>         @addres[0].Address, @addres[0].PhoneNumber</h3>
+              </div>
+      
+            </div>
+    <div class="container" data-aos="zoom-in">
+
+      <div class="text-center">
+        <h3>Total: @sum lei</h3>
+        <a class="cta-btn" href="/myaddresses">Place order</a>
+      </div>
+
+    </div>
+  </section><!-- End Cta Section -->
       
       	
 </main>

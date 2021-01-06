@@ -19,7 +19,8 @@ namespace PrintShop.Models
         
         public DbSet<Models.DeliveryAddress> DeliveryAddresses { get; set; }
         
-        public DbSet<Models.Order> Orders { get; set; }
+        
+       public DbSet<Models.Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,8 +30,7 @@ namespace PrintShop.Models
                 .WithMany(g => g.Products)
                 .HasForeignKey(s => s.CategoryId);
             
-            modelBuilder.Entity<Order>()
-                .HasKey(c => new { c.OrderId });
+            
             
         }
 

@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace PrintShop.Models
@@ -6,25 +5,17 @@ namespace PrintShop.Models
     public class Order
     {
         [Key]
-        public string OrderId;
-        public string ClientId;
-        public string ShoppingCartId;
-        public ShoppingCart ShoppingCart;
-        public DateTime OrderDate;
-        public string DeliveryAddresId;
-        public DeliveryAddress DeliveryAddress;
+        public int Id { get; set; }
+        public string ShippingCartId { get; set; }
+        public string ClientId { get; set; }
+        public string DeliveryAddressId { get; set; }
 
-        public Order(string shoppingCartId, ShoppingCart shoppingCart, DeliveryAddress deliveryAddress,  string deliveryAddresId, string clientId, string orderId)
-        { 
-            ShoppingCart = shoppingCart;
-            ShoppingCartId = shoppingCartId;
-            OrderDate = DateTime.Now;
-            DeliveryAddress = deliveryAddress;
-            DeliveryAddresId = deliveryAddresId;
+        public Order(string shippingCartId, string clientId, string deliveryAddressId)
+        {
+            // Id = id;
+            ShippingCartId = shippingCartId;
             ClientId = clientId;
-            OrderId = orderId;
-
+            DeliveryAddressId = deliveryAddressId;
         }
-
     }
 }

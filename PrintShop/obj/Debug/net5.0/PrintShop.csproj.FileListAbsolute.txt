@@ -225,3 +225,7 @@
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/ShoppingCart/ProductIndex.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/DeliveryAddress/Index.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/DeliveryAddress/New.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/Index.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/New.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/ReviewOrder.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/OrderPlaced.cshtml.g.cs

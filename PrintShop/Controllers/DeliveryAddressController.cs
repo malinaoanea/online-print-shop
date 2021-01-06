@@ -62,12 +62,12 @@ namespace PrintShop.Controllers
 
                 _context.SaveChanges();
 
-                return RedirectToAction("Index", "DeliveryAddress");
+                return RedirectToAction("Index", "Order");
 
             }
             
            
-            return View(deliveryAddress);
+            return RedirectToAction("Index", "Order");
         }
     }
 }

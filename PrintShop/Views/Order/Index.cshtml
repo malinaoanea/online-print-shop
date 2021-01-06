@@ -1,54 +1,45 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@using PrintShop.Controllers
-
 @{
-    ViewBag.Title = "title";
+    ViewData["Title"] = "Home Page";
     Layout = null;
 }
 
 <head>
-      
-        <meta charset="utf-8">
-          <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        
-          <title>Gp Bootstrap Template - Index</title>
-          <meta content="" name="description">
-          <meta content="" name="keywords">
-        
-          <!-- Favicons -->
-          <link href="../assets1/img/favicon.png" rel="icon">
-          <link href="../assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
-        
-          <!-- Google Fonts -->
-          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-        
-        <!-- Vendor CSS Files -->
-        
-          <link href="../assets1/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
-          <link href="../assets1/vendor/icofont/icofont.min.css" rel="stylesheet">
-          <link href="../assets1/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-          <link href="../assets1/vendor/owl.carousel/assets1/owl.carousel.min.css" rel="stylesheet">
-          <link href="../assets1/vendor/venobox/venobox.css" rel="stylesheet">
-          <link href="../assets1/vendor/remixicon/remixicon.css" rel="stylesheet">
-        <link href="../assets1/vendor/aos/aos.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        
-          <!-- Template Main CSS File -->
-        <link href="../assets1/css/style.css" rel="stylesheet">
-       
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        
-        <!-- =======================================================
-        * Template Name: Gp - v3.0.0
-        * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
-        * Author: BootstrapMade.com
-        * License: https://bootstrapmade.com/license/
-        ======================================================== -->
-  </head>
+    <title>Gp Bootstrap Template - Index</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets1/img/favicon.png" rel="icon">
+    <link href="assets1/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets1/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets1/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets1/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets1/vendor/owl.carousel/assets1/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets1/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets1/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets1/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets1/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: Gp - v3.0.0
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
 
 	  
 <html>
@@ -115,10 +106,7 @@
                   <h4>@product.Name</h4>
                   <span>@product.Price lei</span>
                   <br>
-                  <a href="@Url.Action("DeleteCartItem", new {id = @product.Id} )" class="glyphicon glyphicon-trash" style="color: #0b0b0b">
-                    <i class="icon-pencil icon-white"></i>
-                                                                                
-                  </a>
+                  
                 </div>
               </div>
             </div>
@@ -132,18 +120,44 @@
       </div>
     </div>
   </section>
-  <br>
-  <br>
-  <section id="cta" class="cta">
-        <div class="container" data-aos="zoom-in">
   
-          <div class="text-center">
-            <h3>Total: @sum lei</h3>
-            <a class="cta-btn" href="/placeorder">Continue</a>
-          </div>
-  
+  <section id="team" class="team">
+      <div class="container" data-aos="fade-up">
+   
+        <div class="section-title">
+          <p>My addresses</p>
         </div>
-      </section><!-- End Cta Section -->
+   
+        <div class="row">
+          @{
+            var addresses = ViewData["delivery"] as List<DeliveryAddress>;
+            foreach (var address in addresses)
+            {
+              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delay="100">
+                  <div class="member-img">
+                                  
+                  </div>
+                  <div class="member-info">
+                    <h4>@address.Country, @address.County @address.City</h4>
+                    <h3>@address.Address</h3>
+                    <h3>@address.PhoneNumber</h3>
+                    <br>
+                    @Html.ActionLink("Use this address", "UseThisAddress", null, new {id = @address.Id})
+                    </div>
+                </div>
+              </div>
+            }
+          }
+  
+             
+  
+            
+               
+        </div>
+      </div>
+    </section>
+  
       
       	
 </main>
@@ -191,7 +205,5 @@
 
 </body>
 </html>
-
-
 
 

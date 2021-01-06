@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PrintShop.Models;
@@ -9,9 +10,10 @@ using PrintShop.Models;
 namespace PrintShop.Data.Migrations
 {
     [DbContext(typeof(PrintShopContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210106134433_n1")]
+    partial class n1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,7 +312,7 @@ namespace PrintShop.Data.Migrations
                     b.ToTable("DeliveryAddresses");
                 });
 
-            modelBuilder.Entity("PrintShop.Models.Order", b =>
+            modelBuilder.Entity("PrintShop.Models.Order1", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -328,7 +330,7 @@ namespace PrintShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order1s");
                 });
 
             modelBuilder.Entity("PrintShop.Models.Product", b =>
