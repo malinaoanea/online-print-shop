@@ -18,19 +18,34 @@ namespace PrintShop.Controllers
             string clientIt = User.FindFirstValue(ClaimTypes.NameIdentifier);
             
             // daca nu are produce in carucior da eroare
-            var shoppingCartId = _context.ShoppingCarts.Where(c=> c.ClientId == clientIt).ToList()[0].Id;
+            var shoppingCarts = _context.ShoppingCarts.Where(c => c.ClientId == clientIt).ToList();
 
-            var items = _context.CartItems.Where(c => c.CartId == shoppingCartId).ToList();
-
-            var products = new List<Product>();
-            foreach (var item in items)
+            if (shoppingCarts.Count > 0)
             {
-                Product product =
-                    _context.Products.Where(product1 => product1.Id.ToString() == item.ProductId).ToList()[0];
-                products.Add( product);
-            }
+                var shoppingCartId = shoppingCarts[0].Id;
+            
+                var items = _context.CartItems.Where(c => c.CartId == shoppingCartId).ToList();
 
-            ViewData["items"] = products;
+                var products = new List<Product>();
+                foreach (var item in items)
+                {
+                    Product product =
+                        _context.Products.Where(product1 => product1.Id.ToString() == item.ProductId).ToList()[0];
+                    products.Add( product);
+                }
+                
+                ViewData["items"] = products;
+                return View();
+            }
+            
+            
+             return RedirectToAction("EmptyCart", "ShoppingCart");
+            
+            
+        }
+        
+        public IActionResult EmptyCart()
+        {
             return View();
         }
 

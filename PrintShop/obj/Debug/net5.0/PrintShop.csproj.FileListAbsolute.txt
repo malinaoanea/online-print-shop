@@ -229,3 +229,4 @@
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/New.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/ReviewOrder.cshtml.g.cs
 /Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/Order/OrderPlaced.cshtml.g.cs
+/Users/malinaoanea/RiderProjects/PrintShop/PrintShop/obj/Debug/net5.0/Razor/Views/ShoppingCart/EmptyCart.cshtml.g.cs

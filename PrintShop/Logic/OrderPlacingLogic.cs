@@ -25,6 +25,14 @@ namespace PrintShop.Logic
             //var orderId = (_printShopContext.Order1s.Count() + 1).ToString();
             _printShopContext.Orders.Add(new Order(_shoppingCartId, _clientId, deliveryAddresId));
             _printShopContext.SaveChanges();
+            
+            ClearShoppingCart(shoppingCart);
+        }
+
+        public void ClearShoppingCart(ShoppingCart shoppingCart)
+        {
+            _printShopContext.ShoppingCarts.Remove(shoppingCart);
+            _printShopContext.SaveChanges();
         }
     }
 }
