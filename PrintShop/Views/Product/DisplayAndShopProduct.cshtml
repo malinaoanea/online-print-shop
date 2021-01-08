@@ -128,9 +128,12 @@
                   <p>@product.Price lei</p>
                   <div class="portfolio-links">
                     <a href=@product.ImageUrl data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-                    @Html.ActionLink("Add To Cart", "AddToCart", null, new {id = @product.Id})
-
-                    <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                    @if (SignInManager.IsSignedIn(User))
+                    { 
+                        <a href="@Url.Action("AddToCart", new {id = @product.Id} )" title="More Details"><i class="fa fa-shopping-cart"></i></a>
+                     
+                    }
+                   
                   </div>
                 </div>
               </div>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PrintShop.Models;
 
 
@@ -32,7 +33,7 @@ namespace PrintShop.Logic
             {
               // there is no shopping cart for the client
               string cartId = _printShopContext.ShoppingCarts.Count().ToString();
-              _printShopContext.ShoppingCarts.Add(new ShoppingCart( _clientId, cartId));
+              _printShopContext.ShoppingCarts.Add(new ShoppingCart( _clientId, cartId + 1));
               _printShopContext.SaveChanges();
 
               ShoppingCartId = GetCartId();
@@ -41,6 +42,7 @@ namespace PrintShop.Logic
               string cartItemId = _printShopContext.CartItems.Count().ToString();
               _printShopContext.CartItems.Add(new CartItem(ShoppingCartId, _clientId, id, _printShopContext));
               _printShopContext.SaveChanges();
+              
             }
             else
             {
