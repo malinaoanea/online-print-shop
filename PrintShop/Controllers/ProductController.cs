@@ -14,6 +14,7 @@ namespace PrintShop.Controllers
         private PrintShopContext _context;
 
         // GET
+        [Authorize(Roles = "Admin")]
         [Route("/sefu/products")]
         public IActionResult ProductIndex()
         {
@@ -28,6 +29,7 @@ namespace PrintShop.Controllers
         }
 
         // [Authorize(Roles = "Admin"
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult New(int categoryId = 0)
         {
@@ -44,6 +46,7 @@ namespace PrintShop.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         // Get /product/new
         public ActionResult New(Product product)
         {

@@ -1,49 +1,50 @@
 @model Category
-
 @{
-    ViewBag.Title = "Create";
+  Layout = null;
 }
 
-<h2>Add category</h2>
 
-<br />
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+   
+          
+          
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+          
+  <!-- Vendor CSS Files -->
+  <link href="../address/style.css" rel="stylesheet">
+          
+</head>
 
 @using (Html.BeginForm())
 {
-    <div class="form-horizontal">
-
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.Name, new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(x => x.Description, new { @class = "control-label col-md-3" })
-            <div class="col-md-9">
-                @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+  <div class="container">
+    <p>Add Category</p>
+    
+    <div class="form">
+    
+      <div class="fields fields--2">
+        <label class="field">
+          <span class="field__label" for="firstname">Category Name</span>
+          @Html.TextBoxFor(x => x.Name, new { @class = "field__input" })
+        </label>
         
-        <div class="form-group">
-                    @Html.LabelFor(x => x.ImageUrl, new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-        <div class="form-group">
-            <div class="col-md-10 col-md-offset-2">
-                <input type="submit" value="Add" class="btn btn-primary" />
-            </div>
-        </div>
+        <label class="field">
+          <span class="field__label" for="firstname">Category Description</span>
+          @Html.TextBoxFor(x => x.Description, new {@class = "field__input"})
+        </label>
         
-        
-
+        <label class="field">
+                  <span class="field__label" for="firstname">Image Url</span>
+                  @Html.TextBoxFor(x => x.ImageUrl, new {@class = "field__input"})
+                </label>
+       
+      </div>
+     
     </div>
+    <hr>
+    <button class="button">Add</button>
+  </div>
 }
