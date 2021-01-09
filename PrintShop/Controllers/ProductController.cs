@@ -144,8 +144,9 @@ namespace PrintShop.Controllers
         {
             if (CartItem.No == 0)
             {
-                var x = Int32.Parse(_context.CartItems.Max(x=>x.CartItemId));
-                CartItem.No = x + 1;
+                var cart = Int32.Parse(_context.CartItems.Max(
+                    cart=>cart.CartItemId));
+                CartItem.No = cart + 1;
             }
             ShoppingCartLogic shoppingCartLogic = new ShoppingCartLogic(_context, User.FindFirstValue(ClaimTypes.NameIdentifier));
             

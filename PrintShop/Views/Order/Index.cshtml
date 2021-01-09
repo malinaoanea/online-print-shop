@@ -131,23 +131,35 @@
         <div class="row">
           @{
             var addresses = ViewData["delivery"] as List<DeliveryAddress>;
-            foreach (var address in addresses)
+            if (addresses.Count > 0)
             {
-              <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                <div class="member" data-aos="fade-up" data-aos-delay="100">
-                  <div class="member-img">
+              foreach (var address in addresses)
+              {
+                <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+                  <div class="member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-img">
                                   
-                  </div>
-                  <div class="member-info">
-                    <h4>@address.Country, @address.County @address.City</h4>
-                    <h3>@address.Address</h3>
-                    <h3>@address.PhoneNumber</h3>
-                    <br>
-                    @Html.ActionLink("Use this address", "UseThisAddress", null, new {id = @address.Id})
                     </div>
+                    <div class="member-info">
+                      <h4>@address.Country, @address.County @address.City</h4>
+                      <h3>@address.Address</h3>
+                      <h3>@address.PhoneNumber</h3>
+                      <br>
+                      @Html.ActionLink("Use this address", "UseThisAddress", null, new {id = @address.Id})
+                    </div>
+                  </div>
                 </div>
-              </div>
+              }
+              <a href="/deliveryaddress/new" ><i class="bx bx-plus" style="font-size: 20px"></i></a>
             }
+            else
+            {
+                <p>Insert your address.</p>
+              <a href="/deliveryaddress/new" ><i class="bx bx-plus"></i></a>
+            }
+            
+            
+           
           }
   
              

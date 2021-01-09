@@ -20,18 +20,17 @@ namespace PrintShop.Models
         
         public static int No { get; set; }
 
-        public CartItem(string cartId, string clientId, string productId, PrintShopContext context)
+        public CartItem(string cartId, string clientId, string productId, PrintShopContext context, string cartItemId)
         {
             
             
                 CartId = cartId;
                 ClientId = clientId;
                 ProductId = productId;
-                CartItemId = ( No + 1).ToString() ;
-                No += 1;
-            
+                CartItemId = cartItemId;
 
-            
+
+
         }
     }
 }
