@@ -108,7 +108,7 @@
               var categories = ViewData["categories"] as List<Category>;
               foreach (var category in categories)
               {
-                <li data-filter=".filter-app">@category.Name</li>
+                <li data-filter=".filter-@category.Name">@category.Name</li>
               }
             }
 
