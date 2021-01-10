@@ -10,12 +10,15 @@ namespace PrintShop.Models
         
         [Required]
         public string ClientId { get; set; }
+        
 
         public ShoppingCart( string clientId, string id)
         {
             ClientId = clientId;
             Id = id;
         }
+        
+        
         
         
     }

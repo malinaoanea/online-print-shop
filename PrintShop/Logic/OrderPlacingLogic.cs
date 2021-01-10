@@ -20,13 +20,23 @@ namespace PrintShop.Logic
         public void UseThisAddress(string deliveryAddresId)
         {
             var shoppingCart = _printShopContext.ShoppingCarts.Where(s => s.Id == _shoppingCartId).ToList()[0];
-
-            var deliveryAddress = _printShopContext.DeliveryAddresses.Where(d => d.Id == deliveryAddresId).ToList()[0];
-            //var orderId = (_printShopContext.Order1s.Count() + 1).ToString();
+            
+            FreeShoppingBag();
+            
             _printShopContext.Orders.Add(new Order(_shoppingCartId, _clientId, deliveryAddresId));
             _printShopContext.SaveChanges();
             
             ClearShoppingCart(shoppingCart);
+        }
+
+        public void FreeShoppingBag()
+        {
+            var itemsToBeRemoved = _printShopContext.CartItems.Where(i => i.CartId == _shoppingCartId).ToList();
+
+            foreach (var t in itemsToBeRemoved)
+            {
+                _printShopContext.CartItems.Remove(t);
+            }
         }
 
         public void ClearShoppingCart(ShoppingCart shoppingCart)

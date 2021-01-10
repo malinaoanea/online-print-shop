@@ -52,10 +52,10 @@ namespace PrintShop.Controllers
             }
             else
             {
-                deliveryAddress.Id = (1 + _context.DeliveryAddresses.Max(x => x.Id)).ToString();
+                deliveryAddress.Id = (1 + _context.DeliveryAddresses.Count()).ToString();
             }
-            
-            
+
+            var x = 5;
             if (ModelState.IsValid)
             {
                 _context.DeliveryAddresses.Add(deliveryAddress);
@@ -65,9 +65,10 @@ namespace PrintShop.Controllers
                 return RedirectToAction("Index", "Order");
 
             }
-            
-           
-            return RedirectToAction("Index", "Order");
+
+            ViewData["Validation_message"] =
+                "The county name should start with small letter. Also, for the moment we only deliver in Romania.";
+            return RedirectToAction("New", "Order");
         }
     }
 }
