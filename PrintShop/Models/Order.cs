@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Humanizer;
 
 namespace PrintShop.Models
 {
@@ -9,6 +10,7 @@ namespace PrintShop.Models
         public string ShippingCartId { get; set; }
         public string ClientId { get; set; }
         public string DeliveryAddressId { get; set; }
+        
 
         public Order(string shippingCartId, string clientId, string deliveryAddressId)
         {

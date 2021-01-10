@@ -20,6 +20,8 @@ namespace PrintShop.Models
         [Required]
         public int CategoryId { get; set; }
 
+        public int Number { get; set; }
+
         
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }

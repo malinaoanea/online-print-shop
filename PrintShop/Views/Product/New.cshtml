@@ -46,6 +46,11 @@
           @Html.DropDownListFor(x=>x.CategoryId, (SelectList) ViewBag.Categories,"Selecteaza Catgegorie", new {@class = "text-danger"})
           @Html.ValidationMessageFor(x => x.CategoryId, "", new {@class = "text-danger"})
         </label> 
+        
+        <label class="field">
+        <span class="field__label" for="firstname">Number</span>
+        @Html.TextBoxFor(x => x.Number, new {@class = "field__input"})
+      </label>
        
       </div>
       

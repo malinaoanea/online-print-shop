@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using NpgsqlTypes;
 using PrintShop.Models;
 
 namespace PrintShop.Logic
@@ -29,13 +31,31 @@ namespace PrintShop.Logic
             ClearShoppingCart(shoppingCart);
         }
 
+        
+
         public void FreeShoppingBag()
         {
             var itemsToBeRemoved = _printShopContext.CartItems.Where(i => i.CartId == _shoppingCartId).ToList();
 
             foreach (var t in itemsToBeRemoved)
             {
+                Restock(t);
                 _printShopContext.CartItems.Remove(t);
+            }
+        }
+
+        private void Restock(CartItem t)
+        {
+            var product = _printShopContext.Products.Where(p => p.Id.ToString() == t.ProductId).ToList()[0];
+
+            try
+            {
+                product.Number -= 1;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Couldn't find the product to be bought.");
+                throw;
             }
         }
 
