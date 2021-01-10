@@ -1115,13 +1115,14 @@ section {
 
 .team .member .member-info {
     padding: 25px 15px;
+    background-color: black;
 }
 
 .team .member .member-info h4 {
     font-weight: 700;
     margin-bottom: 5px;
     font-size: 18px;
-    color: #151515;
+    color: whitesmoke;
 }
 
 .team .member .member-info span {
@@ -1178,7 +1179,7 @@ section {
     margin-bottom: 0;
     font-size: 14px;
     color: whitesmoke;
-    background-color: black;
+    background-color: #0e1f0e;
 }
 
 .contact .info .email, .contact .info .phone {

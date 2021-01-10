@@ -50,28 +50,28 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="" style="color: #0b0b0b" >Backdoor shop<span>.</span></a></h1>
+      <h1 class="logo"><a href="" style="color: whitesmoke" >Backdoor shop<span>.</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src=""../assets1/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="/" style="color: #0b0b0b; border: #0b0b0b">Home</a></li>
-          <li class="fa fa-shopping-cart" style="font-size:24px; color: #0b0b0b"></li>
+          <li class="active"><a href="/" style="color: whitesmoke; border: #0b0b0b">Home</a></li>
+          <li class="fa fa-shopping-cart" style="font-size:24px; color: whitesmoke"></li>
 
         </ul>
       </nav><!-- .nav-menu -->
       @if (SignInManager.IsSignedIn(User))
       {
               
-        <a style="color: #0b0b0b" asp-area="Identity" asp-page="/Account/Manage/Index" >Hello @User.Identity.Name!</a>
+        <a style="color: whitesmoke" asp-area="Identity" asp-page="/Account/Manage/Index" >Hello @User.Identity.Name!</a>
               
                  
               
       }
       else
       {
-        <a href="/Identity/Account/Login" class="get-started-btn scrollto">Log in</a>
+        <a href="/Identity/Account/Login" class="get-started-btn scrollto" style="color: whitesmoke">Log in</a>
       }
       
     
