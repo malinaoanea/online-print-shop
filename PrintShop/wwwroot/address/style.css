@@ -44,7 +44,7 @@ hr {
     margin: 2rem 0;
 }
 
-.container1 {
+.container {
     max-width: 40rem;
     padding: 10vw 2rem 0;
     margin: 0 auto;
@@ -100,7 +100,7 @@ hr {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.button1 {
+.button {
     background-color: #000;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -114,6 +114,6 @@ hr {
     cursor: pointer;
     outline: 0;
 }
-.button1:focus-visible {
+.button:focus-visible {
     background-color: #333;
 }
